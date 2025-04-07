@@ -14,7 +14,7 @@ namespace ATCMediator
             foreach (var assembly in assemblies)
             {
                 // Registrar ICommandHandler<T>
-                var commandHandlerType = typeof(ICommandHandler<>);
+                var commandHandlerType = typeof(ICommandHandler<,>);
                 var commandHandlers = assembly.GetTypes()
                     .Where(t => t.GetInterfaces().Any(i =>
                         i.IsGenericType && i.GetGenericTypeDefinition() == commandHandlerType));
