@@ -7,7 +7,7 @@ La libreria busca fomentar una comunidad para forteceler la experiencia de desar
 ## Instalación
 
 ```bash
-dotnet add package ATCMediator --version 1.0.2
+dotnet add package ATCMediator --version 2.0.0
 
 …
 
@@ -21,7 +21,7 @@ builder.Services.AddATCMediator(
 );
 
 // Datos Entrada
-public class ExampleCommand : ICommand
+public class ProductCommand : ICommand
 {
     public string? Name { get; set; }
     public decimal Price { get; set;}
