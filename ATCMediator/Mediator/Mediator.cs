@@ -5,7 +5,7 @@ namespace ATCMediator.Mediator
 {
     public class Mediator(IServiceProvider serviceProvider) : IMediator
     {
-        public async Task<TResult> SendCommand<TResult>(ICommand<TResult> command)
+        public async Task<TResult> Execute<TResult>(ICommand<TResult> command, CancellationToken cancellationToken = default)
         {
             var handlerType = typeof(ICommandHandler<,>).MakeGenericType(command.GetType(), typeof(TResult));
             dynamic handler = serviceProvider.GetService(handlerType)
@@ -14,7 +14,7 @@ namespace ATCMediator.Mediator
             return await handler.Handle((dynamic)command);
         }
 
-        public async Task<TResult> SendQuery<TResult>(IQuery<TResult> query)
+        public async Task<TResult> Execute<TResult>(IQuery<TResult> query, CancellationToken cancellationToken = default)
         {
             var handlerType = typeof(IQueryHandler<,>).MakeGenericType(query.GetType(), typeof(TResult));
             dynamic handler = serviceProvider.GetService(handlerType)
