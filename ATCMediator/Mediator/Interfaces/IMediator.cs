@@ -3,7 +3,7 @@ namespace ATCMediator.Mediator.Interfaces
 {
     public interface IMediator
     {
-        Task SendCommand<TCommand>(TCommand command);
-        Task<TResult> SendQuery<TResult>(IQuery<TResult> query);
+        Task<TResult> Execute<TResult>(ICommand<TResult> command, CancellationToken cancellationToken = default);
+        Task<TResult> Execute<TResult>(IQuery<TResult> query, CancellationToken cancellationToken = default);
     }
 }
